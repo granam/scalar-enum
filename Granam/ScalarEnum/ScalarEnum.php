@@ -175,14 +175,17 @@ class ScalarEnum extends StrictObject implements ScalarEnumInterface
     /**
      * Granam enums are intentionally not final, but should not be compared by just a value.
      * Use $enum1 === $enum2 to find out same instances or $enum1->is($enum2) for equality of different instances.
-     * Think twice before suppressing $sameClassOnly condition, as use can loose ArticleTypeEnum->getValue == RoleEnum->getValue equality for example.
+     * Think twice before suppressing $sameClassOnly condition, as use can accidentally get ArticleTypeEnum->getValue == RoleEnum->getValue equality for example.
      *
-     * @param ScalarEnumInterface $enum
+     * @param ScalarInterface|string|bool|int|float|null $enum
      * @param bool $sameClassOnly = false
      * @return bool
      */
-    public function is(ScalarEnumInterface $enum, bool $sameClassOnly = true): bool
+    public function is($enum, bool $sameClassOnly = true): bool
     {
+        if (!($enum instanceof ScalarInterface)) {
+            return $this->getValue() === $enum;
+        }
         return $this->getValue() === $enum->getValue()
             && (!$sameClassOnly || static::class === \get_class($enum));
     }

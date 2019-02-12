@@ -108,10 +108,13 @@ class ScalarEnumTest extends TestWithMockery
         $sutClass = $this->getEnumClass();
         $firstEnum = $sutClass::getEnum('foo');
         self::assertTrue($firstEnum->is($firstEnum), 'Enum should recognize itself');
+        self::assertTrue($firstEnum->is($firstEnum->getValue()), 'Enum should recognize own value');
 
         $secondEnum = $sutClass::getEnum($secondValue = 'bar');
         self::assertFalse($firstEnum->is($secondEnum), 'Same classes with different values should not be equal');
+        self::assertFalse($firstEnum->is($secondEnum->getValue()), 'Different values should not be equal');
         self::assertFalse($secondEnum->is($firstEnum), 'Same classes with different values should not be equal');
+        self::assertFalse($secondEnum->is($firstEnum->getValue()), 'Different values should not be equal');
 
         $childEnum = TestInheritedScalarEnum::getEnum($secondValue);
         self::assertFalse($firstEnum->is($childEnum), 'Parent enum should not be equal to its child class');
