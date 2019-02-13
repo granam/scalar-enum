@@ -92,7 +92,7 @@ class ScalarEnumTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @expectedException \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      */
     public function I_can_not_create_it_by_object_without_to_string(): void
     {
@@ -175,7 +175,7 @@ class ScalarEnumTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @expectedException \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      */
     public function Using_invalid_value_without_casting_cause_exception(): void
     {
@@ -184,7 +184,7 @@ class ScalarEnumTest extends TestWithMockery
 
     /**
      * @test
-     * @expectedException \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @expectedException \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      */
     public function I_can_not_create_it_with_null(): void
     {

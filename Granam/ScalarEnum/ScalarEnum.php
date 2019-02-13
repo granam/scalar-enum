@@ -17,7 +17,7 @@ class ScalarEnum extends StrictObject implements ScalarEnumInterface
 
     /**
      * @param bool|float|int|string|ScalarInterface $enumValue
-     * @throws Exceptions\UnexpectedValueToEnum
+     * @throws Exceptions\WrongValueForScalarEnum
      */
     protected function __construct($enumValue)
     {
@@ -27,21 +27,21 @@ class ScalarEnum extends StrictObject implements ScalarEnumInterface
     /**
      * @param bool|float|int|string|ScalarInterface $enumValue
      * @return string|float|int|bool
-     * @throws \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @throws \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      */
     protected static function convertToEnumFinalValue($enumValue)
     {
         try {
             return ToScalar::toScalar($enumValue, true /* strict */);
         } catch (\Granam\Scalar\Tools\Exceptions\WrongParameterType $exception) {
-            throw new Exceptions\UnexpectedValueToEnum($exception->getMessage(), $exception->getCode(), $exception);
+            throw new Exceptions\WrongValueForScalarEnum($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
     /**
      * @param bool|float|int|string|ScalarInterface $enumValue
      * @return ScalarEnumInterface
-     * @throws \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @throws \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      * @throws \Granam\ScalarEnum\Exceptions\CanNotCreateInstanceOfAbstractEnum
      */
     public static function getEnum($enumValue)
@@ -53,7 +53,7 @@ class ScalarEnum extends StrictObject implements ScalarEnumInterface
      * @param int|float|string|bool $enumValue
      * @param string $namespace
      * @return ScalarEnumInterface
-     * @throws Exceptions\UnexpectedValueToEnum
+     * @throws Exceptions\WrongValueForScalarEnum
      * @throws Exceptions\CanNotCreateInstanceOfAbstractEnum
      */
     protected static function getEnumFromNamespace($enumValue, string $namespace)
@@ -127,12 +127,12 @@ class ScalarEnum extends StrictObject implements ScalarEnumInterface
      * @param string|int|float|bool $finalEnumValue
      * @return ScalarEnum
      * @throws \Granam\ScalarEnum\Exceptions\CanNotCreateInstanceOfAbstractEnum
-     * @throws \Granam\ScalarEnum\Exceptions\UnexpectedValueToEnum
+     * @throws \Granam\ScalarEnum\Exceptions\WrongValueForScalarEnum
      */
     protected static function createEnum($finalEnumValue)
     {
         if (!\is_scalar($finalEnumValue)) {
-            throw new Exceptions\UnexpectedValueToEnum('Expected scalar, got ' . \gettype($finalEnumValue));
+            throw new Exceptions\WrongValueForScalarEnum('Expected scalar, got ' . \gettype($finalEnumValue));
         }
         /** @noinspection PhpUnhandledExceptionInspection */
         $reflection = new \ReflectionClass(static::class);
