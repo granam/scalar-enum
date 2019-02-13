@@ -1,9 +1,9 @@
 # Enumeration with scalar values
 
 ## <span id="usage">Usage</span>
-1. [Installation](#installation)
-2. [Use enum](#use-enum)
-3. [NULL is NULL, not Enum](#null-is-null-enum-can-not-hold-it)
+1. [Use enum](#use-enum)
+2. [NULL is NULL, not Enum](#null-is-null-enum-can-not-hold-it)
+3. [Installation](#installation)
 
 ## Use enum
 ```php
