@@ -6,28 +6,19 @@ use Granam\Tests\ExceptionsHierarchy\Exceptions\AbstractExceptionsHierarchyTest;
 
 class ScalarEnumExceptionsHierarchyTest extends AbstractExceptionsHierarchyTest
 {
-    /**
-     * @return string
-     */
     protected function getTestedNamespace(): string
     {
         return $this->getRootNamespace();
     }
 
-    /**
-     * @return string
-     */
     protected function getRootNamespace(): string
     {
-        return \str_replace('\Tests', '', __NAMESPACE__);
+        return str_replace('\Tests', '', __NAMESPACE__);
     }
 
-    /**
-     * @return string
-     */
-    protected function getExternalRootNamespaces(): string
+    protected function getExternalRootNamespaces(): array
     {
-        return 'Granam\Scalar';
+        return ['Granam\Scalar'];
     }
 
 }

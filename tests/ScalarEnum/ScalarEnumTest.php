@@ -7,7 +7,7 @@ use Granam\Tests\ScalarEnum\Helpers\TestInvalidExistingScalarEnumUsage;
 use Granam\Tests\ScalarEnum\Helpers\TestInvalidScalarEnumValue;
 use Granam\Tests\ScalarEnum\Helpers\TestOfAbstractScalarEnum;
 use Granam\Tests\ScalarEnum\Helpers\WithToStringTestObject;
-use Granam\Tests\Tools\TestWithMockery;
+use Granam\TestWithMockery\TestWithMockery;
 
 class ScalarEnumTest extends TestWithMockery
 {
@@ -197,7 +197,7 @@ class ScalarEnumTest extends TestWithMockery
     public function I_am_stopped_by_exception_if_trying_to_create_abstract_enum(): void
     {
         $this->expectException(\Granam\ScalarEnum\Exceptions\CanNotCreateInstanceOfAbstractEnum::class);
-        $this->expectExceptionMessageRegExp('~abstract.+TestOfAbstractScalarEnum~');
+        $this->expectExceptionMessageMatches('~abstract.+TestOfAbstractScalarEnum~');
         TestOfAbstractScalarEnum::getEnum('foo');
     }
 }
